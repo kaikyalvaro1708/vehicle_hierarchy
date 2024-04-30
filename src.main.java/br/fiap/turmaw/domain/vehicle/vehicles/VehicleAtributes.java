@@ -1,4 +1,4 @@
-package br.com.vehicle.vehicles;
+package br.fiap.turmaw.domain.vehicle.vehicles;
 
 public class VehicleAtributes {
     private String brand;
@@ -41,29 +41,6 @@ public class VehicleAtributes {
     }
 
     //Getters and Setters
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public int getMaxSpeed() {
         return maxSpeed;
     }
@@ -79,6 +56,4 @@ public class VehicleAtributes {
     public void setCurrentSpeed(int currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
-
-
 }

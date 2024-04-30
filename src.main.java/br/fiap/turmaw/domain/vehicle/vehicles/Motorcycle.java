@@ -1,4 +1,4 @@
-package br.com.vehicle.vehicles;
+package br.fiap.turmaw.domain.vehicle.vehicles;
 
 public class Motorcycle extends VehicleAtributes {
     public Motorcycle(String brand, String model, int year) {

@@ -1,8 +1,8 @@
-package br.com.vehicle;
+package br.fiap.turmaw.domain.vehicle;
 
-import br.com.vehicle.vehicles.Car;
-import br.com.vehicle.vehicles.Motorcycle;
-import br.com.vehicle.vehicles.Truck;
+import br.fiap.turmaw.domain.vehicle.vehicles.Car;
+import br.fiap.turmaw.domain.vehicle.vehicles.Motorcycle;
+import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
 
 public class MenuVehicles {
     public static void menuVehicles() {
