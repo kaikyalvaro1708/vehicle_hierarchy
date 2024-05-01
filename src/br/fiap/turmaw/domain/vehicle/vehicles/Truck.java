@@ -10,7 +10,8 @@ public class Truck extends VehicleAtribute {
     public void transportCargo(double cargo) {
         if (cargo <= 1.0) {
             System.out.println("Carga de " + cargo + " toneladas transportada.");
+        } else {
+            System.out.println("Carga muito pesada para este caminhão.");
         }
-        System.out.println("Carga muito pesada para este caminhão.");
     }
 }

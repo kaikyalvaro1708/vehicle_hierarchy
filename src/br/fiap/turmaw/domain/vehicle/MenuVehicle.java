@@ -6,7 +6,7 @@ import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
 
 public class MenuVehicle {
     public static void menuVehicles() {
-        int increment;
+        int speed;
 
         System.out.println("""
                 --------------------
@@ -16,18 +16,13 @@ public class MenuVehicle {
         car.getStatus();
         System.out.println("""
                 ----------------------------------
-                Status do carro depois de acelerar
-                e ligar o ar-condicionado:
+                Status do carro depois de acelerar ou
+                desacelerar e ligar o ar-condicionado:
                 ----------------------------------""");
-        increment = 90; //valor de aceleração
-        //Faz a verificação se o valor da aceleração somado com a velocidade atual
-        // é maior que o limite máximo estabelicido
-        // se for, vai decrementar a velocidade até a velocidade máxima permitida
-        if (car.getCurrentSpeed() + increment > car.getMaxSpeed()) {
-            car.reduceSpeed(car.getCurrentSpeed() + increment - car.getMaxSpeed());
-        }
-        car.accelerate(increment);
-        car.turnOnAirConditioning();
+        speed = 100; //valor de aceleração ou desaceleração
+        //car.accelerate(speed);
+        car.reduceSpeed(speed);
+        car.isCarOn();
         car.getStatus();
 
         //#######################################################################//
@@ -43,11 +38,9 @@ public class MenuVehicle {
                 Status da moto depois de acelerar e 
                 verificar se é possível empinar ou não:
                 ----------------------------------""");
-        increment = 9;
-        if (motorcycle.getCurrentSpeed() + increment > motorcycle.getMaxSpeed()) {
-            motorcycle.reduceSpeed(motorcycle.getCurrentSpeed() + increment - motorcycle.getMaxSpeed());
-        }
-        motorcycle.accelerate(increment);
+        speed = 9;
+        motorcycle.accelerate(speed);
+        //car.accelerate(speed);
         motorcycle.wheelie();
         motorcycle.getStatus();
 
@@ -65,12 +58,10 @@ public class MenuVehicle {
                 Status do caminhão depois de acelerar
                 e verificar o tamanho da carga:
                 ----------------------------------""");
-        increment = 10;
-        if (truck.getCurrentSpeed() + increment > truck.getMaxSpeed()) {
-            truck.reduceSpeed(truck.getCurrentSpeed() + increment - truck.getMaxSpeed());
-        }
-        truck.accelerate(increment);
-        truck.transportCargo(1.5);
+        speed = 10;
+        truck.accelerate(speed);
+        //car.accelerate(speed);
+        truck.transportCargo(0.5);
         truck.getStatus();
     }
 }

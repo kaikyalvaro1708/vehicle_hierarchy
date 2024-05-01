@@ -10,7 +10,8 @@ public class Motorcycle extends VehicleAtribute {
     public void wheelie() {
         if (getCurrentSpeed() > 20 && getCurrentSpeed() < 50) {
             System.out.println("Moto empinada!");
+        } else {
+            System.out.println("Não é possível empinar a moto nesta velocidade.");
         }
-        System.out.println("Não é possível empinar a moto nesta velocidade.");
     }
 }

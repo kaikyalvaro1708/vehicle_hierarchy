@@ -1,28 +1,20 @@
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
 public class Car extends VehicleAtribute {
-    private boolean airConditioning;
+    private boolean airConditioningOn;
+    private boolean carOn;
 
     public Car(String brand, String model, int year){
         super(brand, model, year);
         setMaxSpeed(180);
         setCurrentSpeed(100);
-        this.airConditioning = false;
     }
-
-    public void turnOnAirConditioning() {
-        airConditioning = true;
-        System.out.println("Ar condicionado ligado.");
-    }
-
-    public void turnOffAirConditioning() {
-        airConditioning = false;
-        System.out.println("Ar condicionado desligado.");
-    }
-
-    @Override
-    public void getStatus() {
-        super.getStatus();
-        System.out.println("Ar Condicionado: " + (airConditioning ? "ligado" : "desligado"));
+    public boolean isCarOn () {
+        if (getCurrentSpeed() == 0 ){
+            System.out.println("Ar Condicionado e o carro estão desligados");
+            return carOn == false && airConditioningOn == false;
+        }
+        System.out.println("Ar Condicionado: ligado");
+        return true;
     }
 }

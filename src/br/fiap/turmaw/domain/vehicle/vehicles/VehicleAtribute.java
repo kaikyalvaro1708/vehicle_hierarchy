@@ -24,10 +24,10 @@ public class VehicleAtribute {
     }
 
     public int reduceSpeed(int decrement) {
-        if (currentSpeed + decrement > maxSpeed) {
-            currentSpeed = maxSpeed;
+        if (currentSpeed - decrement < 0) {
+            currentSpeed = 0;
         } else {
-            currentSpeed += decrement;
+            currentSpeed -= decrement;
         }
         return decrement;
     }
