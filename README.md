@@ -84,10 +84,10 @@ public class VehicleAtribute {
     }
 
     public int reduceSpeed(int decrement) {
-        if (currentSpeed + decrement > maxSpeed) {
-            currentSpeed = maxSpeed;
+        if (currentSpeed - decrement < 0) {
+            currentSpeed = 0;
         } else {
-            currentSpeed += decrement;
+            currentSpeed -= decrement;
         }
         return decrement;
     }
@@ -146,46 +146,38 @@ public class VehicleAtribute {
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
 public class Car extends VehicleAtribute {
-    private boolean airConditioning;
+    private boolean airConditioningOn;
+    private boolean carOn;
 
     public Car(String brand, String model, int year){
         super(brand, model, year);
         setMaxSpeed(180);
         setCurrentSpeed(100);
-        this.airConditioning = false;
     }
-
-    public void turnOnAirConditioning() {
-        airConditioning = true;
-        System.out.println("Ar condicionado ligado.");
-    }
-
-    public void turnOffAirConditioning() {
-        airConditioning = false;
-        System.out.println("Ar condicionado desligado.");
-    }
-
-    @Override
-    public void getStatus() {
-        super.getStatus();
-        System.out.println("Ar Condicionado: " + (airConditioning ? "ligado" : "desligado"));
+    public boolean isCarOn () {
+        if (getCurrentSpeed() == 0 ){
+            System.out.println("Ar Condicionado e o carro estão desligados");
+            return carOn == false && airConditioningOn == false;
+        }
+        System.out.println("Ar Condicionado: ligado");
+        return true;
     }
 }
+
 ```
 
 ### Atributos:
-- airConditioning: Um booleano que indica se o carro possui ar-condicionado ou não.
+- airConditioningOn: Um booleano que indica se o carro possui ar-condicionado ou não.
+- carON: Um booleano que indica se o carro está ligado ou não.
 
 ### Construtor:
 - O construtor Car recebe os parâmetros brand, model e year para inicializar os atributos correspondentes da classe pai VehicleAtributes. Ele também define a velocidade máxima como 180 km/h e a velocidade atual como 100 km/h, além de inicializar o ar-condicionado como desligado.
 
 ### Métodos:
-- turnOnAirConditioning(): Liga o ar-condicionado do carro e imprime uma mensagem.
-- turnOffAirConditioning(): Desliga o ar-condicionado do carro e imprime uma mensagem.
-- getStatus(): Sobrescreve o método da classe pai para imprimir o status do carro, incluindo os atributos herdados (marca, modelo, ano, velocidade máxima e velocidade atual) e o estado do ar-condicionado.
-
+- isCarOn: método que verifica se o carro está ligado ou não. Se o carro estiver desligado, isto é, velocidade igual a 0, o carro e nem o ar-condicionado estará ligado. Caso contrário, ou seja, em movimento,  o carro e o ar-condicionado estará ligado
+  
 ### Uso:
-- Para utilizar a classe Car, é necessário instanciar um objeto Car com os valores específicos de marca, modelo e ano do carro. Em seguida, os métodos podem ser chamados para ligar/desligar o ar-condicionado e obter o status do carro, incluindo o estado do ar-condicionado.
+- Para utilizar a classe Car, é necessário instanciar um objeto Car com os valores específicos de marca, modelo e ano do carro. Em seguida, o método de verificar se o carro está ligado ou não deve ser chamado.
 
 ## Motorcycle.java
 
@@ -204,8 +196,9 @@ public class Motorcycle extends VehicleAtribute {
     public void wheelie() {
         if (getCurrentSpeed() > 20 && getCurrentSpeed() < 50) {
             System.out.println("Moto empinada!");
+        } else {
+            System.out.println("Não é possível empinar a moto nesta velocidade.");
         }
-        System.out.println("Não é possível empinar a moto nesta velocidade.");
     }
 }
 ```
@@ -235,8 +228,9 @@ public class Truck extends VehicleAtribute {
     public void transportCargo(double cargo) {
         if (cargo <= 1.0) {
             System.out.println("Carga de " + cargo + " toneladas transportada.");
+        } else {
+            System.out.println("Carga muito pesada para este caminhão.");
         }
-        System.out.println("Carga muito pesada para este caminhão.");
     }
 }
 ```
@@ -262,7 +256,7 @@ import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
 
 public class MenuVehicle {
     public static void menuVehicles() {
-        int increment;
+        int speed;
 
         System.out.println("""
                 --------------------
@@ -272,18 +266,13 @@ public class MenuVehicle {
         car.getStatus();
         System.out.println("""
                 ----------------------------------
-                Status do carro depois de acelerar
-                e ligar o ar-condicionado:
+                Status do carro depois de acelerar ou
+                desacelerar e ligar o ar-condicionado:
                 ----------------------------------""");
-        increment = 90; //valor de aceleração
-        //Faz a verificação se o valor da aceleração somado com a velocidade atual
-        // é maior que o limite máximo estabelicido
-        // se for, vai decrementar a velocidade até a velocidade máxima permitida
-        if (car.getCurrentSpeed() + increment > car.getMaxSpeed()) {
-            car.reduceSpeed(car.getCurrentSpeed() + increment - car.getMaxSpeed());
-        }
-        car.accelerate(increment);
-        car.turnOnAirConditioning();
+        speed = 100; //valor de aceleração ou desaceleração
+        //car.accelerate(speed);
+        car.reduceSpeed(speed);
+        car.isCarOn();
         car.getStatus();
 
         //#######################################################################//
@@ -299,11 +288,9 @@ public class MenuVehicle {
                 Status da moto depois de acelerar e 
                 verificar se é possível empinar ou não:
                 ----------------------------------""");
-        increment = 9;
-        if (motorcycle.getCurrentSpeed() + increment > motorcycle.getMaxSpeed()) {
-            motorcycle.reduceSpeed(motorcycle.getCurrentSpeed() + increment - motorcycle.getMaxSpeed());
-        }
-        motorcycle.accelerate(increment);
+        speed = 9;
+        motorcycle.accelerate(speed);
+        //motorcycle.reduceSpeed(speed);
         motorcycle.wheelie();
         motorcycle.getStatus();
 
@@ -321,12 +308,10 @@ public class MenuVehicle {
                 Status do caminhão depois de acelerar
                 e verificar o tamanho da carga:
                 ----------------------------------""");
-        increment = 10;
-        if (truck.getCurrentSpeed() + increment > truck.getMaxSpeed()) {
-            truck.reduceSpeed(truck.getCurrentSpeed() + increment - truck.getMaxSpeed());
-        }
-        truck.accelerate(increment);
-        truck.transportCargo(1.5);
+        speed = 10;
+        truck.accelerate(speed);
+        //truck.reduceSpeed(speed);
+        truck.transportCargo(0.5);
         truck.getStatus();
     }
 }
@@ -339,7 +324,7 @@ public class MenuVehicle {
 ### Interagindo com o carro:
 - Um objeto da classe Car é criado representando um carro da marca Ford, modelo Focus, fabricado em 2020.
 - O status do carro é exibido.
-- O carro é acelerado em 90 km/h, verificando se a velocidade máxima é excedida. Em seguida, o ar-condicionado é ligado.
+- O carro é acelerado ou desacelerado em 100 km/h, dependendo da escolha do usuário. 
 - O novo status do carro, incluindo o estado do ar-condicionado, é exibido.
 
 ### Interagindo com a moto:
@@ -362,12 +347,11 @@ public class MenuVehicle {
 -Desse modo, podemos rodar a Main e as informações irão ser exibidas no terminal.
 
 ### Carro
-![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/25e051c8-84b1-4b2f-bf17-0645745efec4)
+![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/7686b267-3d3e-4e7d-a8ad-91c11c060843)
 
 ### Moto
-![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/3724d3df-e298-4169-abbd-42d9e8a24a57)
+![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/15d0751b-bc1b-46f8-b539-3ab178687e8c)
 
 ### Caminhão
-![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/903c98c8-d807-4a32-9d27-63c19b7080b5)
-
+![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/c2711cfb-7a3b-412a-8a2d-5062dace9c16)
 
