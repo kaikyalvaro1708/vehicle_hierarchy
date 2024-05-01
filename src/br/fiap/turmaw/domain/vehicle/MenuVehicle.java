@@ -40,7 +40,7 @@ public class MenuVehicle {
                 ----------------------------------""");
         speed = 9;
         motorcycle.accelerate(speed);
-        //car.accelerate(speed);
+        //motorcycle.reduceSpeed(speed);
         motorcycle.wheelie();
         motorcycle.getStatus();
 
@@ -60,7 +60,7 @@ public class MenuVehicle {
                 ----------------------------------""");
         speed = 10;
         truck.accelerate(speed);
-        //car.accelerate(speed);
+        //truck.reduceSpeed(speed);
         truck.transportCargo(0.5);
         truck.getStatus();
     }
