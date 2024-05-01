@@ -1,6 +1,6 @@
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class Truck extends VehicleAtributes {
+public class Truck extends VehicleAtribute {
     public Truck(String brand, String model, int year) {
         super(brand, model, year);
         setMaxSpeed(100);

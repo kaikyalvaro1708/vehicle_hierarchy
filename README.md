@@ -136,10 +136,10 @@ public class VehicleAtributes {
 ```Java
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class Car extends VehicleAtributes {
+public class Car extends VehicleAtribute {
     private boolean airConditioning;
 
-    public Car(String brand, String model, int year){
+    public Car(String brand, String model, int year) {
         super(brand, model, year);
         setMaxSpeed(180);
         setCurrentSpeed(100);
@@ -181,10 +181,11 @@ public class Car extends VehicleAtributes {
 ## Motorcycle.java
 
 - O mesmo arquivo que criamos para carro, agora faremos com o da moto.
+
 ```Java
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class Motorcycle extends VehicleAtributes {
+public class Motorcycle extends VehicleAtribute {
     public Motorcycle(String brand, String model, int year) {
         super(brand, model, year);
         setMaxSpeed(120);
@@ -211,10 +212,11 @@ public class Motorcycle extends VehicleAtributes {
 ## Truck.java
 
 - O mesmo arquivo que criamos para carro e moto, agora faremos com o do caminhão.
+
 ```Java
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class Truck extends VehicleAtributes {
+public class Truck extends VehicleAtribute {
     public Truck(String brand, String model, int year) {
         super(brand, model, year);
         setMaxSpeed(100);
@@ -245,9 +247,9 @@ Para utilizar a classe Truck, é necessário instanciar um objeto Truck com os v
 ```Java
 package br.fiap.turmaw.domain.vehicle;
 
-import br.fiap.turmaw.domain.vehicle.vehicles.Car;
-import br.fiap.turmaw.domain.vehicle.vehicles.Motorcycle;
-import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
+import vehicles.br.fiap.turmaw.domain.vehicle.Car;
+import vehicles.br.fiap.turmaw.domain.vehicle.Motorcycle;
+import vehicles.br.fiap.turmaw.domain.vehicle.Truck;
 
 public class MenuVehicles {
     public static void menuVehicles() {

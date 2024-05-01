@@ -4,13 +4,13 @@ import br.fiap.turmaw.domain.vehicle.vehicles.Car;
 import br.fiap.turmaw.domain.vehicle.vehicles.Motorcycle;
 import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
 
-public class MenuVehicles {
+public class MenuVehicle {
     public static void menuVehicles() {
         int increment;
 
         System.out.println("""
                 --------------------
-                Informações do carro: 
+                Informações do carro:
                 """);
         Car car = new Car("Ford", "Focus", 2020);
         car.getStatus();
@@ -34,7 +34,7 @@ public class MenuVehicles {
 
         System.out.println("""
                 --------------------
-                Informações da moto: 
+                Informações da moto:
                 """);
         Motorcycle motorcycle = new Motorcycle("Honda", "CBR 1000", 2022);
         motorcycle.getStatus();

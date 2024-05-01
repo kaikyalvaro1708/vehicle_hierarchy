@@ -1,6 +1,6 @@
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class Car extends VehicleAtributes {
+public class Car extends VehicleAtribute {
     private boolean airConditioning;
 
     public Car(String brand, String model, int year){

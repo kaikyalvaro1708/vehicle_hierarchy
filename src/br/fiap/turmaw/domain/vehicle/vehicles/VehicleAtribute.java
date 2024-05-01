@@ -1,13 +1,13 @@
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class VehicleAtributes {
+public class VehicleAtribute {
     private String brand;
     private String model;
     private int year;
     private int maxSpeed;
     private int currentSpeed;
 
-    public VehicleAtributes(String brand, String model, int year){
+    public VehicleAtribute(String brand, String model, int year){
         this.brand = brand;
         this.model = model;
         this.year = year;
