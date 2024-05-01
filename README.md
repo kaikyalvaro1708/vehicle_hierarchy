@@ -41,24 +41,33 @@ Outro ponto, é que para cada veículo existe um tipo de método específico par
 ## Desvendando o código passo a passo
 
 ### Main.java
-![image](https://github.com/kaikyalvaro1708/vehicle_hierarchy/assets/126626704/dc37e17e-aa5e-4261-a5ee-d04f3c1f554e)
+
+```Java
+import br.fiap.turmaw.domain.vehicle.MenuVehicle;
+
+public class Main {
+    public static void main(String[] args) {
+        MenuVehicle.menuVehicles();
+    }
+}
+```
 
 - No arquivo de Main.java, não colocamos nenhuma lógica complexa, apenas estamos o utilizando como inicializador.
   
-## VehicleAtributes.java
+## VehicleAtribute.java
 
 - Primeiro, iremos criar uma classe como os atributos em comum com os veículos em geral, de modo que possamos passar esses atributos como herança.
 ```Java
 package br.fiap.turmaw.domain.vehicle.vehicles;
 
-public class VehicleAtributes {
+public class VehicleAtribute {
     private String brand;
     private String model;
     private int year;
     private int maxSpeed;
     private int currentSpeed;
 
-    public VehicleAtributes(String brand, String model, int year){
+    public VehicleAtribute(String brand, String model, int year){
         this.brand = brand;
         this.model = model;
         this.year = year;
@@ -139,7 +148,7 @@ package br.fiap.turmaw.domain.vehicle.vehicles;
 public class Car extends VehicleAtribute {
     private boolean airConditioning;
 
-    public Car(String brand, String model, int year) {
+    public Car(String brand, String model, int year){
         super(brand, model, year);
         setMaxSpeed(180);
         setCurrentSpeed(100);
@@ -241,23 +250,23 @@ public class Truck extends VehicleAtribute {
 Para utilizar a classe Truck, é necessário instanciar um objeto Truck com os valores específicos de marca, modelo e ano do caminhão. Em seguida, o método transportCargo(double cargo) pode ser chamado para transportar uma carga, passando o peso da carga como parâmetro. Ele informará se a carga foi transportada com sucesso ou se é muito pesada para o caminhão.
 
 
-## MenuVehicles.java
+## MenuVehicle.java
 
 - Agora que definimos os atributos e passa-los como herança, podemos agora usar os veículos e integrá-los em um menu que será chamado na Main, como mostrado no início. 
 ```Java
 package br.fiap.turmaw.domain.vehicle;
 
-import vehicles.br.fiap.turmaw.domain.vehicle.Car;
-import vehicles.br.fiap.turmaw.domain.vehicle.Motorcycle;
-import vehicles.br.fiap.turmaw.domain.vehicle.Truck;
+import br.fiap.turmaw.domain.vehicle.vehicles.Car;
+import br.fiap.turmaw.domain.vehicle.vehicles.Motorcycle;
+import br.fiap.turmaw.domain.vehicle.vehicles.Truck;
 
-public class MenuVehicles {
+public class MenuVehicle {
     public static void menuVehicles() {
         int increment;
 
         System.out.println("""
                 --------------------
-                Informações do carro: 
+                Informações do carro:
                 """);
         Car car = new Car("Ford", "Focus", 2020);
         car.getStatus();
@@ -281,7 +290,7 @@ public class MenuVehicles {
 
         System.out.println("""
                 --------------------
-                Informações da moto: 
+                Informações da moto:
                 """);
         Motorcycle motorcycle = new Motorcycle("Honda", "CBR 1000", 2022);
         motorcycle.getStatus();
